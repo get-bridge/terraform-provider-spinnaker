@@ -27,7 +27,7 @@ terraform_plugins="$HOME/.terraform.d/plugins/${kernel_lower}_$ARCH/"
 IFS= manifest=$(curl -s https://api.github.com/repos/get-bridge/terraform-provider-spinnaker/releases/latest)
 
 url=$(echo $manifest \
-| grep "browser_download_url.*${kernel}_${arch}" \
+| grep "browser_download_url.*${kernel_lower}_${ARCH}" \
 | cut -d '"' -f 4 \
 )
 version=$(echo $manifest \
@@ -36,7 +36,7 @@ version=$(echo $manifest \
 )
 
 if [ -z ${url} ]; then
-  echo "no build for this kernel/arch: ${kernel}_${arch}"
+  echo "no build for this kernel/arch: ${kernel_lower}_${ARCH}"
   exit 1
 fi
 
