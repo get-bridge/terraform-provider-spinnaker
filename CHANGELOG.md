@@ -1,4 +1,7 @@
 # terraform-provider-spinnaker
+## 4.1.1
+- [b86b2c2]  Update binary and archive names, so they are compatible with the terraform registry.
+
 ## 4.1.0
 - [07ac02c] Merge pull request #1 from get-bridge/dev/craun/update-go-version
 
