@@ -7,7 +7,6 @@ on:
 
 env:
   GOMAXPROCS: 2
-  GPG_FINGERPRINT: 40924AE39042B5A7B6F6C671EEA470C648A61638
 
 jobs:
   goreleaser:
@@ -48,3 +47,4 @@ jobs:
           args: release --rm-dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
