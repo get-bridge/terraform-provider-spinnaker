@@ -41,7 +41,8 @@ if [ -z ${url} ]; then
 fi
 
 dest_file="terraform-provider-spinnaker_$version"
-curl $url -L -o $dest_file
+curl $url -L -o "$dest_file.zip"
+unzip "$dest_file.zip" $dest_file
 chmod +x $dest_file
 
 mkdir -p $terraform_plugins
