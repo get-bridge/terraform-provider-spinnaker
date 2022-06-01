@@ -1,4 +1,4 @@
-VERSION := v4.1.1
+VERSION := v4.2.0
 
 tag:
 	@git tag -a ${VERSION} -m ${VERSION}
