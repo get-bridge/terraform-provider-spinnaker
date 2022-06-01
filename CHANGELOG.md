@@ -1,4 +1,7 @@
 # terraform-provider-spinnaker
+## 4.2.0
+- [298272f]  Update go from 1.16 to 1.17
+
 ## 4.1.1
 - [b86b2c2]  Update binary and archive names, so they are compatible with the terraform registry.
 
