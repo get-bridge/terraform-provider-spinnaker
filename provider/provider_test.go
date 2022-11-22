@@ -1,15 +1,17 @@
 package provider
 
 import (
+	"context"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 var (
-	testAccProviders map[string]terraform.ResourceProvider
+	testAccProviders map[string]*schema.Provider
 	testAccProvider  *schema.Provider
 )
 
@@ -34,13 +36,13 @@ func TestProviderConfigure(t *testing.T) {
 			"key_path":  os.Getenv("SPINNAKER_KEY"),
 		},
 	}
-	rawConfig, configErr := terraform.NewResourceConfigRaw(raw)
-	if configErr != nil {
-		t.Fatal(configErr)
-	}
-	c := terraform.NewResourceConfig(rawConfig)
+
 	provider := Provider()
-	err := provider.Configure(c)
+
+	d := time.Now().Add(5 * time.Second)
+	ctx, _ := context.WithDeadline(context.Background(), d)
+
+	err := provider.Configure(ctx, terraform.NewResourceConfigRaw(raw))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -69,8 +71,11 @@ func testAccPreCheck(t *testing.T) {
 		t.Fatal("Spinnaker config (SPINNAKER_CERT and SPINNAKER_KEY) must be set for acceptance tests")
 	}
 
-	c := terraform.NewResourceConfig(nil)
-	err := testAccProvider.Configure(c)
+	d := time.Now().Add(5 * time.Second)
+	ctx, _ := context.WithDeadline(context.Background(), d)
+
+	c := terraform.NewResourceConfigRaw(nil)
+	err := testAccProvider.Configure(ctx, c)
 	if err != nil {
 		t.Fatal(err)
 	}
