@@ -4,7 +4,7 @@ import (
 	"bytes"
 
 	"github.com/get-bridge/terraform-provider-spinnaker/client"
-	"github.com/hashicorp/terraform/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"gopkg.in/yaml.v2"
 	kyaml "k8s.io/apimachinery/pkg/util/yaml"
 )

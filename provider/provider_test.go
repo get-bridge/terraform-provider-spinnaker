@@ -4,9 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/hashicorp/terraform/config"
-	"github.com/hashicorp/terraform/helper/schema"
-	"github.com/hashicorp/terraform/terraform"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 var (
@@ -15,8 +14,8 @@ var (
 )
 
 func init() {
-	testAccProvider = Provider().(*schema.Provider)
-	testAccProviders = map[string]terraform.ResourceProvider{
+	testAccProvider = Provider()
+	testAccProviders = map[string]*schema.Provider{
 		"spinnaker": testAccProvider,
 	}
 }
@@ -35,12 +34,12 @@ func TestProviderConfigure(t *testing.T) {
 			"key_path":  os.Getenv("SPINNAKER_KEY"),
 		},
 	}
-	rawConfig, configErr := config.NewRawConfig(raw)
+	rawConfig, configErr := terraform.NewResourceConfigRaw(raw)
 	if configErr != nil {
 		t.Fatal(configErr)
 	}
 	c := terraform.NewResourceConfig(rawConfig)
-	provider := Provider().(*schema.Provider)
+	provider := Provider()
 	err := provider.Configure(c)
 	if err != nil {
 		t.Fatal(err)

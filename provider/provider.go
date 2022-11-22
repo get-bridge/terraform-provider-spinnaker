@@ -4,8 +4,7 @@ import (
 	"log"
 
 	"github.com/get-bridge/terraform-provider-spinnaker/client"
-	"github.com/hashicorp/terraform/helper/schema"
-	"github.com/hashicorp/terraform/terraform"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/mitchellh/mapstructure"
 )
 
@@ -18,7 +17,7 @@ type Services struct {
 }
 
 // Provider for terraform
-func Provider() terraform.ResourceProvider {
+func Provider() *schema.Provider {
 	return &schema.Provider{
 		TerraformVersion: ">= 0.12",
 		Schema: map[string]*schema.Schema{

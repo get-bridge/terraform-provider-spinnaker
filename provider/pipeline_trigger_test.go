@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/get-bridge/terraform-provider-spinnaker/client"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
 
 func testAccCheckPipelineTriggers(resourceName string, expected []string, triggers *[]client.Trigger) resource.TestCheckFunc {
