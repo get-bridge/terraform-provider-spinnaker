@@ -6,7 +6,7 @@ require (
 	github.com/ghodss/yaml v1.0.0
 	github.com/google/uuid v1.3.0
 	github.com/hashicorp/terraform v0.12.29
-	github.com/iancoleman/strcase v0.1.2
+	github.com/iancoleman/strcase v0.3.0
 	github.com/kylelemons/godebug v1.1.0
 	github.com/mitchellh/mapstructure v1.4.0
 	github.com/sergi/go-diff v1.1.0
